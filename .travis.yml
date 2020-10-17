@@ -7,7 +7,7 @@ jdk:
 
 jobs:
   include:
-    - stage: testing
+    - stage: test
       script: echo "testing coming soon"
     - stage: deploy
       branches:
