@@ -3,7 +3,7 @@ language: java
 dist: trusty
 
 jdk: 
-  - oraclejdk8
+  - oraclejdk9
 
 deploy:
   provider: script
@@ -20,5 +20,5 @@ deploy:
   on:
     branch:
       only:
-        - ci-parallel-pipelines
+        - ci-parallel-pipelines-jdk9
     after_failure: echo "WIP"
