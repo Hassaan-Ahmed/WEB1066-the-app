@@ -12,9 +12,9 @@ deploy:
         - ci-pipelines      
       provider: script
       script:
-        on:
-          after_failure: echo "WIP"
         - ./gradlew test jacocoTestReport
         - bash find . -name jacocoTestReport.csv|xargs cat |awk -F',' '{print $3 " " $4" " $5}'    
         - ./gradlew clean jar
         - ./gradlew assemble
+        on:
+          after_failure: echo "WIP"
