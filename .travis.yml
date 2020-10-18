@@ -8,7 +8,7 @@ jdk:
 jobs:
   include:
     - stage: test
-      script: echo "testing coming soon"
+      script: ./gradlew test
     - stage: deploy
       branches:
         only:
