@@ -8,12 +8,17 @@ jdk:
 deploy:
   provider: script
   script:
-    - COVERAGE = $COVERAGE ./gradlew test jacocoTestReport
-    - bash find . -name jacocoTestReport.csv|xargs cat |awk -F',' '{print $3 " " $4" " $5}'    
-    - ./gradlew clean jar
-    - ./gradlew assemble
+    - COVERAGE = $COVERAGE ./gradlew -p ./monolithic/ui check
+    - COVERAGE = $COVERAGE ./gradlew -p ./monolithic/service/cart check
+    - COVERAGE = $COVERAGE ./gradlew -p ./monolithic/service/user check
+
+    - COVERAGE = $COVERAGE ./gradlew -p ./monolithic/repository/order check
+    - COVERAGE = $COVERAGE ./gradlew -p ./monolithic/repository/cart check
+    - COVERAGE = $COVERAGE ./gradlew -p ./monolithic/repository/product check
+    - COVERAGE = $COVERAGE ./gradlew -p ./monolithic/repository/user check
+    
   on:
     branch:
       only:
-        - ci-pipelines
+        - ci-parallel-pipelines
     after_failure: echo "WIP"
